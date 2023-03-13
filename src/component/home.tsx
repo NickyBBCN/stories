@@ -27,7 +27,7 @@ const Home = () => {
         {showPage === PageEnum.list && (
           <>
             <input
-              className="p-[10px] border-solid border-[1px] border-black border-collapse rounded-2xl bg-blue-500 mb-2"
+              className="p-[10px] float-right border-solid border-[1px] border-black border-collapse rounded-2xl bg-blue-500 mb-2"
               type="button"
                    value="Add Products"
                    onClick={onAddProductsClick}/>
