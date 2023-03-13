@@ -24,9 +24,9 @@ const ProductsList = (props: Props) => {
               <td className="p-[10px] border-solid border-[1px] border-black border-collapse">{`${products.account}`}</td>
                 <td>
                   <div>
-                    <input className="p-[10px] border-solid border-[1px] border-black border-collapse" type="button" value="view"/>
-                    <input className="p-[10px] border-solid border-[1px] border-black border-collapse" type="button" value="edit"/>
-                    <input className="p-[10px] border-solid border-[1px] border-black border-collapse"  type="button" value="delete"/>
+                    <input className="w-[50px] h-[40px] border-solid border-[1px] border-black border-collapse mr-2 rounded-2xl" type="button" value="view"/>
+                    <input className="w-[50px] h-[40px] border-solid border-[1px] border-black border-collapse mr-2 rounded-2xl" type="button" value="edit"/>
+                    <input className="w-[50px] h-[40px] border-solid border-[1px] border-black border-collapse mr-2 rounded-2xl"  type="button" value="delete"/>
                   </div>
                 </td>
             </tr>

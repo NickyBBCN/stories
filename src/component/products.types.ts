@@ -12,3 +12,8 @@ export const dummyProductsList: IProducts[] = [
     description: "Plato 2oZ",
     account: "heheh"
   }];
+
+export enum PageEnum{
+  list,
+  add,
+}
