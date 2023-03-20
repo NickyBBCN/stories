@@ -1,10 +1,23 @@
 import {IProducts} from "./products.types";
+import ProductsModal from "./productsModal";
+import {useState} from "react";
 
 type Props = {
-  list: IProducts[]
+  list: IProducts[];
+  onDelecteClick: (data: IProducts) => void;
+  onEdit: (data: IProducts) => void;
+
 }
 const ProductsList = (props: Props) => {
-  const {list} = props;
+  const {list, onDelecteClick, onEdit} = props;
+  const [showModal, setShowModal] = useState(false);
+  const [dataToShow, setDataToShow] = useState(null as IProducts | null);
+  const viewProducts = (data: IProducts) => {
+    setShowModal(true);
+    setDataToShow(data);
+  }
+  const onCloseModal = () => setShowModal(false);
+
   return (
     <div>
       <table className="w-[100%] bg-gray-100 border-solid border-[1px] border-black border-collapse">
@@ -15,25 +28,39 @@ const ProductsList = (props: Props) => {
           <th className="border-solid border-[1px] border-black border-collapsetext-left">Acciones</th>
         </tr>
         {list.map((products) => {
-          console.log(products);
+            console.log(products);
             return (
               <tr className="border-solid border-[1px] border-black border-collapse"
-              key={products.id}>
-              <td className="p-[10px] border-solid border-[1px] border-black border-collapse">{`${products.name}`}</td>
-              <td className="p-[10px] border-solid border-[1px] border-black border-collapse">{`${products.description}`}</td>
-              <td className="p-[10px] border-solid border-[1px] border-black border-collapse">{`${products.account}`}</td>
+                  key={products.id}>
+                <td className="p-[10px] border-solid border-[1px] border-black border-collapse">{`${products.name}`}</td>
+                <td
+                  className="p-[10px] border-solid border-[1px] border-black border-collapse">{`${products.description}`}</td>
+                <td
+                  className="p-[10px] border-solid border-[1px] border-black border-collapse">{`${products.account}`}</td>
                 <td>
                   <div>
-                    <input className="w-[60px] h-[40px]  border-solid border-[1px]  border-collapse rounded-2xl bg-blue-300 mb-2" type="button" value="view"/>
-                    <input className="w-[60px] h-[40px]  border-solid border-[1px]  border-collapse rounded-2xl bg-blue-300 mb-2" type="button" value="edit"/>
-                    <input className="w-[60px] h-[40px]  border-solid border-[1px]  border-collapse rounded-2xl bg-blue-300 mb-2"  type="button" value="delete"/>
+                    <input
+                      className="w-[60px] h-[40px]  border-solid border-[1px]  border-collapse rounded-2xl bg-blue-300 mb-2"
+                      type="button" value="view" onClick={() => viewProducts(products)}/>
+                    <input
+                      className="w-[60px] h-[40px]  border-solid border-[1px]  border-collapse rounded-2xl bg-blue-300 mb-2"
+                      type="button"
+                      value="edit"
+                    onClick={()=>onEdit(products)}/>
+                    <input
+                      className="w-[60px] h-[40px]  border-solid border-[1px]  border-collapse rounded-2xl bg-blue-300 mb-2"
+                      type="button"
+                      value="delete"
+                      onClick={() => onDelecteClick(products)}/>
                   </div>
                 </td>
-            </tr>
+              </tr>
             )
           }
         )}
       </table>
+      {showModal && dataToShow !== null && <ProductsModal onClose={onCloseModal} data={dataToShow}/>}
+
     </div>
   )
 }
